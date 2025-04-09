@@ -235,7 +235,7 @@
     const descriptionEl = document.getElementById("description");
 
     let selectedAnswer = null;
-    let isTimedOut = false;
+    let TimedOut = false;
 
     function loadQuestion() {
       resetState();
@@ -250,7 +250,7 @@
         radio.id = `opt${i}`;
         radio.addEventListener("change", () => {
           selectedAnswer = parseInt(radio.value);
-          if (!isTimedOut) submitBtn.disabled = false;
+          if (!TimedOut) submitBtn.disabled = false;
         });
 
         const label = document.createElement("label");
@@ -270,7 +270,7 @@
     function resetState() {
       clearInterval(timeClear);
 
-      isTimedOut = false;
+      TimedOut = false;
       timerEl.textContent = 15;
       formEl.innerHTML = "";
       descriptionEl.textContent = "";
@@ -287,7 +287,7 @@
         timerEl.textContent = time;
         if (time <= 0) {
           clearInterval(timeClear);
-          isTimedOut = true;
+          TimedOut = true;
           submitAnswer(); 
         }
       }, 1000);
